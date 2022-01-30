@@ -7,11 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<Tweet10DbContext>(options => options.UseSqlServer(
-    builder.Configuration.GetConnectionString("DefaultConnection")
-    ));
 builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<UserContext>();builder.Services.AddDbContext<UserContext>(options =>
+    .AddEntityFrameworkStores<DatabaseContext>();builder.Services.AddDbContext<DatabaseContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 var app = builder.Build();
 
@@ -36,3 +33,4 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 app.Run();
+

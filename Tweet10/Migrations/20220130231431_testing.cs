@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Tweet10.Migrations.User
+namespace Tweet10.Migrations
 {
-    public partial class AddingUserToDatabase : Migration
+    public partial class testing : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -154,6 +154,26 @@ namespace Tweet10.Migrations.User
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Tweets",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Text = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    createdDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tweets", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Tweets_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -192,6 +212,11 @@ namespace Tweet10.Migrations.User
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tweets_UserId",
+                table: "Tweets",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -210,6 +235,9 @@ namespace Tweet10.Migrations.User
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Tweets");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

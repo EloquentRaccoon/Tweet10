@@ -8,10 +8,10 @@ using Tweet10.Data;
 
 #nullable disable
 
-namespace Tweet10.Migrations.User
+namespace Tweet10.Migrations
 {
-    [DbContext(typeof(UserContext))]
-    partial class UserContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(DatabaseContext))]
+    partial class DatabaseContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -224,6 +224,31 @@ namespace Tweet10.Migrations.User
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("Tweet10.Models.Tweet", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("createdDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Tweets");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -273,6 +298,20 @@ namespace Tweet10.Migrations.User
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Tweet10.Models.Tweet", b =>
+                {
+                    b.HasOne("Tweet10.Areas.Identity.Data.User", "User")
+                        .WithMany("Tweets")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Tweet10.Areas.Identity.Data.User", b =>
+                {
+                    b.Navigation("Tweets");
                 });
 #pragma warning restore 612, 618
         }

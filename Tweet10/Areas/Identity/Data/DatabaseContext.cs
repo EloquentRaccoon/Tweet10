@@ -2,12 +2,13 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Tweet10.Areas.Identity.Data;
+using Tweet10.Models;
 
 namespace Tweet10.Data;
 
-public class UserContext : IdentityDbContext<User>
+public class DatabaseContext : IdentityDbContext<User>
 {
-    public UserContext(DbContextOptions<UserContext> options)
+    public DatabaseContext(DbContextOptions<DatabaseContext> options)
         : base(options)
     {
     }
@@ -19,4 +20,6 @@ public class UserContext : IdentityDbContext<User>
         // For example, you can rename the ASP.NET Identity table names and more.
         // Add your customizations after calling base.OnModelCreating(builder);
     }
+
+    public DbSet<Tweet> Tweets { get; set; }
 }
