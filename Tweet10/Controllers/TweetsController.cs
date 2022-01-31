@@ -65,7 +65,7 @@ namespace Tweet10.Controllers
            
             var user = await _userManager.GetUserAsync(User);
             tweet.UserId = user.Id;
-            tweet.createdDateTime = DateTime.Now;
+            tweet.CreatedDateTime = DateTime.Now;
             
             //unsure if this is the correct way to handle an unvalid ModelState.
             ModelState.Remove("User");

@@ -12,8 +12,8 @@ using Tweet10.Data;
 namespace Tweet10.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20220130231431_testing")]
-    partial class testing
+    [Migration("20220131075408_AddedFieldsToDatabase")]
+    partial class AddedFieldsToDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -210,6 +210,7 @@ namespace Tweet10.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
+                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
@@ -226,7 +227,7 @@ namespace Tweet10.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("Tweet10.Models.Tweet", b =>
+            modelBuilder.Entity("Tweet10.Models.Comment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -238,17 +239,65 @@ namespace Tweet10.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("tweetId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("tweetId");
+
+                    b.ToTable("Comment");
+                });
+
+            modelBuilder.Entity("Tweet10.Models.Tweet", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Likes")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Photo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<DateTime>("createdDateTime")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("Video")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("Tweets");
+                });
+
+            modelBuilder.Entity("UserUser", b =>
+                {
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("FollowsId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("ApplicationUserId", "FollowsId");
+
+                    b.HasIndex("FollowsId");
+
+                    b.ToTable("UserUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -302,6 +351,17 @@ namespace Tweet10.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Tweet10.Models.Comment", b =>
+                {
+                    b.HasOne("Tweet10.Models.Tweet", "tweet")
+                        .WithMany("Comments")
+                        .HasForeignKey("tweetId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("tweet");
+                });
+
             modelBuilder.Entity("Tweet10.Models.Tweet", b =>
                 {
                     b.HasOne("Tweet10.Areas.Identity.Data.User", "User")
@@ -311,9 +371,29 @@ namespace Tweet10.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("UserUser", b =>
+                {
+                    b.HasOne("Tweet10.Areas.Identity.Data.User", null)
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Tweet10.Areas.Identity.Data.User", null)
+                        .WithMany()
+                        .HasForeignKey("FollowsId")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Tweet10.Areas.Identity.Data.User", b =>
                 {
                     b.Navigation("Tweets");
+                });
+
+            modelBuilder.Entity("Tweet10.Models.Tweet", b =>
+                {
+                    b.Navigation("Comments");
                 });
 #pragma warning restore 612, 618
         }

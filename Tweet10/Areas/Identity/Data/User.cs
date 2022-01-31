@@ -10,8 +10,14 @@ namespace Tweet10.Areas.Identity.Data;
 // Add profile data for application users by adding properties to the User class
 public class User : IdentityUser
 {
+    public string UserName { get; set; }
+
+    public ICollection<User> ApplicationUser { get; set; }
+
+    public ICollection<User> Follows { get; set; }
 
     public ICollection<Tweet> Tweets { get; set; }
+    
 
 }
 
