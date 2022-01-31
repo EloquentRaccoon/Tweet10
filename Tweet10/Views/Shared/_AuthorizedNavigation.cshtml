@@ -5,26 +5,30 @@
     @inject UserManager<User> UserManager
 
 }
-<nav class="navbar navbar-expand-md d-flex flex-md-column navbar-light bg-white">
+<nav class="navbar navbar-expand-md d-flex flex-md-column navbar-light bg-white h-100">
     <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Tweet10</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
     <div class="navbar-collapse w-100">
-        <ul class="navbar-nav w-100 d-flex flex-column text-center">
+        <ul class="navbar-nav w-100 d-flex flex-column text-start">
             <li class="nav-item">
                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Tweets" asp-action="Create">Tweet</a>
+            </li>
         </ul>
     </div>
+    <div class="h-75"></div>
     <div class="navbar-collapse w-100">
-        <ul class="navbar-nav w-100 d-flex flex-column text-center align-content-end">
+        <ul class="navbar-nav w-100 d-flex flex-column text-start">
             <li class="nav-item">
-                <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+                <a id="manage" class="nav-link text-dark" asp-area="" asp-controller="Tweets" asp-action="Index" >@UserManager.GetUserName(User)</a>
             </li>
             <li class="nav-item">
                 <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">

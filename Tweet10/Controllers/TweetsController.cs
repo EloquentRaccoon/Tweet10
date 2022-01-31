@@ -28,7 +28,8 @@ namespace Tweet10.Controllers
         // GET: Tweets
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Tweets.ToListAsync());
+            var user = await _userManager.GetUserAsync(User);
+            return View(await _context.Tweets.OrderByDescending(t => t.CreatedDateTime).Where(t => t.Username == user.UserName).ToListAsync());
         }
 
         // GET: Tweets/Details/5
@@ -66,9 +67,14 @@ namespace Tweet10.Controllers
             var user = await _userManager.GetUserAsync(User);
             tweet.UserId = user.Id;
             tweet.CreatedDateTime = DateTime.Now;
+            tweet.Username = user.UserName;
             
             //unsure if this is the correct way to handle an unvalid ModelState.
             ModelState.Remove("User");
+            ModelState.Remove("Photo");
+            ModelState.Remove("Video");
+            ModelState.Remove("Comments");
+            ModelState.Remove("Username");
             System.Diagnostics.Debug.WriteLine(tweet.UserId);
             if (ModelState.IsValid)
             {
@@ -164,5 +170,41 @@ namespace Tweet10.Controllers
         {
             return _context.Tweets.Any(e => e.Id == id);
         }
+        public async Task<IActionResult> Like(int? id)
+        {
+            System.Diagnostics.Debug.WriteLine("start?");
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var tweet = await _context.Tweets.FindAsync(id);
+            if (tweet == null)
+            {
+                return NotFound();
+            }
+
+            try
+            {
+                tweet.Likes = tweet.Likes +1;
+                _context.Update(tweet);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!TweetExists(tweet.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction("Index" , "Home", new { Area = ""});
+
+        }
+
     }
+
 }

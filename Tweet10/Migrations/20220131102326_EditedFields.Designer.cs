@@ -12,8 +12,8 @@ using Tweet10.Data;
 namespace Tweet10.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20220131075408_AddedFieldsToDatabase")]
-    partial class AddedFieldsToDatabase
+    [Migration("20220131102326_EditedFields")]
+    partial class EditedFields
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -210,7 +210,6 @@ namespace Tweet10.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
-                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
@@ -264,7 +263,6 @@ namespace Tweet10.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Photo")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Text")
@@ -274,8 +272,11 @@ namespace Tweet10.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Video")
+                    b.Property<string>("Username")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Video")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -364,11 +365,9 @@ namespace Tweet10.Migrations
 
             modelBuilder.Entity("Tweet10.Models.Tweet", b =>
                 {
-                    b.HasOne("Tweet10.Areas.Identity.Data.User", "User")
+                    b.HasOne("Tweet10.Areas.Identity.Data.User", null)
                         .WithMany("Tweets")
                         .HasForeignKey("UserId");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("UserUser", b =>

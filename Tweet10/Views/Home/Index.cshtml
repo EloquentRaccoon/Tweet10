@@ -1,31 +1,50 @@
-﻿@{
+﻿@model IEnumerable<Tweet10.Models.Tweet>
+
+@{
     ViewData["Title"] = "Home Page";
+    bool like = false;
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.
-        lorem
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sem et tortor consequat id porta nibh venenatis cras sed. Purus in mollis nunc sed id. Nisl pretium fusce id velit ut tortor pretium viverra suspendisse. Orci ac auctor augue mauris augue neque gravida. Pellentesque id nibh tortor id aliquet lectus proin nibh nisl. Et sollicitudin ac orci phasellus egestas tellus rutrum tellus pellentesque. Euismod quis viverra nibh cras pulvinar mattis nunc sed. Vitae proin sagittis nisl rhoncus. Massa placerat duis ultricies lacus. Urna et pharetra pharetra massa. Et odio pellentesque diam volutpat commodo sed egestas egestas fringilla. In vitae turpis massa sed elementum tempus egestas. Odio euismod lacinia at quis risus sed vulputate. Feugiat nisl pretium fusce id velit ut tortor pretium viverra. Non curabitur gravida arcu ac. Justo nec ultrices dui sapien eget mi proin. Vestibulum lectus mauris ultrices eros in cursus. Mi tempus imperdiet nulla malesuada pellentesque elit eget gravida. Cras sed felis eget velit aliquet sagittis id consectetur purus.
-
-Cras semper auctor neque vitae tempus quam pellentesque nec nam. Viverra ipsum nunc aliquet bibendum enim facilisis gravida neque convallis. Sed adipiscing diam donec adipiscing tristique risus nec. Morbi non arcu risus quis varius. Pellentesque pulvinar pellentesque habitant morbi. Bibendum neque egestas congue quisque egestas diam in. In hac habitasse platea dictumst quisque sagittis purus sit. Orci a scelerisque purus semper. Vulputate enim nulla aliquet porttitor. Risus nullam eget felis eget nunc lobortis mattis aliquam. Rhoncus dolor purus non enim praesent elementum facilisis leo. Aenean sed adipiscing diam donec adipiscing tristique. Vitae nunc sed velit dignissim sodales ut eu sem. Sit amet tellus cras adipiscing enim eu turpis egestas pretium. Nisi lacus sed viverra tellus.
-
-Eu lobortis elementum nibh tellus. Vitae suscipit tellus mauris a diam. Cursus turpis massa tincidunt dui ut ornare lectus. Vivamus arcu felis bibendum ut tristique et egestas quis ipsum. At tellus at urna condimentum mattis pellentesque id nibh tortor. Tempor commodo ullamcorper a lacus vestibulum sed. Odio tempor orci dapibus ultrices in iaculis nunc sed. Proin nibh nisl condimentum id venenatis a condimentum vitae. Lorem sed risus ultricies tristique nulla aliquet enim. In pellentesque massa placerat duis ultricies. Fermentum iaculis eu non diam phasellus. Vulputate enim nulla aliquet porttitor lacus luctus accumsan tortor posuere. Curabitur gravida arcu ac tortor dignissim convallis aenean et. Pellentesque id nibh tortor id aliquet lectus proin. Enim nunc faucibus a pellentesque sit amet.
-
-Lobortis mattis aliquam faucibus purus in massa tempor nec. Duis at consectetur lorem donec massa sapien faucibus. Ac placerat vestibulum lectus mauris ultrices eros in. Diam quam nulla porttitor massa id neque. Nam libero justo laoreet sit. Tellus pellentesque eu tincidunt tortor. Amet commodo nulla facilisi nullam vehicula ipsum a arcu cursus. Vulputate ut pharetra sit amet aliquam id diam maecenas. Quam vulputate dignissim suspendisse in est ante in nibh. Facilisis gravida neque convallis a cras semper. Purus sit amet volutpat consequat mauris nunc congue nisi.
-
-Viverra suspendisse potenti nullam ac tortor. Augue neque gravida in fermentum et sollicitudin ac orci. Morbi tincidunt ornare massa eget egestas purus viverra accumsan. Non tellus orci ac auctor augue mauris augue neque. At erat pellentesque adipiscing commodo elit at imperdiet dui. In ornare quam viverra orci sagittis eu volutpat. In nibh mauris cursus mattis molestie. Faucibus a pellentesque sit amet porttitor eget dolor morbi non. Vel quam elementum pulvinar etiam non quam lacus suspendisse faucibus. Dolor sit amet consectetur adipiscing elit. Tellus at urna condimentum mattis pellentesque id nibh. Urna nec tincidunt praesent semper feugiat nibh sed pulvinar proin. Augue neque gravida in fermentum et sollicitudin ac. Purus semper eget duis at tellus at urna condimentum mattis. Elementum nibh tellus molestie nunc. Maecenas sed enim ut sem viverra aliquet eget. Ullamcorper velit sed ullamcorper morbi tincidunt ornare massa. Suspendisse in est ante in nibh mauris. Suscipit adipiscing bibendum est ultricies integer quis auctor elit sed. Erat imperdiet sed euismod nisi porta lorem mollis aliquam ut.
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sem et tortor consequat id porta nibh venenatis cras sed. Purus in mollis nunc sed id. Nisl pretium fusce id velit ut tortor pretium viverra suspendisse. Orci ac auctor augue mauris augue neque gravida. Pellentesque id nibh tortor id aliquet lectus proin nibh nisl. Et sollicitudin ac orci phasellus egestas tellus rutrum tellus pellentesque. Euismod quis viverra nibh cras pulvinar mattis nunc sed. Vitae proin sagittis nisl rhoncus. Massa placerat duis ultricies lacus. Urna et pharetra pharetra massa. Et odio pellentesque diam volutpat commodo sed egestas egestas fringilla. In vitae turpis massa sed elementum tempus egestas. Odio euismod lacinia at quis risus sed vulputate. Feugiat nisl pretium fusce id velit ut tortor pretium viverra. Non curabitur gravida arcu ac. Justo nec ultrices dui sapien eget mi proin. Vestibulum lectus mauris ultrices eros in cursus. Mi tempus imperdiet nulla malesuada pellentesque elit eget gravida. Cras sed felis eget velit aliquet sagittis id consectetur purus.
-
-Cras semper auctor neque vitae tempus quam pellentesque nec nam. Viverra ipsum nunc aliquet bibendum enim facilisis gravida neque convallis. Sed adipiscing diam donec adipiscing tristique risus nec. Morbi non arcu risus quis varius. Pellentesque pulvinar pellentesque habitant morbi. Bibendum neque egestas congue quisque egestas diam in. In hac habitasse platea dictumst quisque sagittis purus sit. Orci a scelerisque purus semper. Vulputate enim nulla aliquet porttitor. Risus nullam eget felis eget nunc lobortis mattis aliquam. Rhoncus dolor purus non enim praesent elementum facilisis leo. Aenean sed adipiscing diam donec adipiscing tristique. Vitae nunc sed velit dignissim sodales ut eu sem. Sit amet tellus cras adipiscing enim eu turpis egestas pretium. Nisi lacus sed viverra tellus.
-
-Eu lobortis elementum nibh tellus. Vitae suscipit tellus mauris a diam. Cursus turpis massa tincidunt dui ut ornare lectus. Vivamus arcu felis bibendum ut tristique et egestas quis ipsum. At tellus at urna condimentum mattis pellentesque id nibh tortor. Tempor commodo ullamcorper a lacus vestibulum sed. Odio tempor orci dapibus ultrices in iaculis nunc sed. Proin nibh nisl condimentum id venenatis a condimentum vitae. Lorem sed risus ultricies tristique nulla aliquet enim. In pellentesque massa placerat duis ultricies. Fermentum iaculis eu non diam phasellus. Vulputate enim nulla aliquet porttitor lacus luctus accumsan tortor posuere. Curabitur gravida arcu ac tortor dignissim convallis aenean et. Pellentesque id nibh tortor id aliquet lectus proin. Enim nunc faucibus a pellentesque sit amet.
-
-Lobortis mattis aliquam faucibus purus in massa tempor nec. Duis at consectetur lorem donec massa sapien faucibus. Ac placerat vestibulum lectus mauris ultrices eros in. Diam quam nulla porttitor massa id neque. Nam libero justo laoreet sit. Tellus pellentesque eu tincidunt tortor. Amet commodo nulla facilisi nullam vehicula ipsum a arcu cursus. Vulputate ut pharetra sit amet aliquam id diam maecenas. Quam vulputate dignissim suspendisse in est ante in nibh. Facilisis gravida neque convallis a cras semper. Purus sit amet volutpat consequat mauris nunc congue nisi.
-
-Viverra suspendisse potenti nullam ac tortor. Augue neque gravida in fermentum et sollicitudin ac orci. Morbi tincidunt ornare massa eget egestas purus viverra accumsan. Non tellus orci ac auctor augue mauris augue neque. At erat pellentesque adipiscing commodo elit at imperdiet dui. In ornare quam viverra orci sagittis eu volutpat. In nibh mauris cursus mattis molestie. Faucibus a pellentesque sit amet porttitor eget dolor morbi non. Vel quam elementum pulvinar etiam non quam lacus suspendisse faucibus. Dolor sit amet consectetur adipiscing elit. Tellus at urna condimentum mattis pellentesque id nibh. Urna nec tincidunt praesent semper feugiat nibh sed pulvinar proin. Augue neque gravida in fermentum et sollicitudin ac. Purus semper eget duis at tellus at urna condimentum mattis. Elementum nibh tellus molestie nunc. Maecenas sed enim ut sem viverra aliquet eget. Ullamcorper velit sed ullamcorper morbi tincidunt ornare massa. Suspendisse in est ante in nibh mauris. Suscipit adipiscing bibendum est ultricies integer quis auctor elit sed. Erat imperdiet sed euismod nisi porta lorem mollis aliquam ut.
-    
-
-
-</p>
+<div class="overflow-scroll vh-100">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Username)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Text)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedDateTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Likes)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            
+                @foreach (var item in Model)
+                {
+                    <a asp-area="" asp-controller="Tweets" asp-action="Details"  asp-route-id="@item.Id">
+                <tr onclick="location.href = '@Url.Action("Details", "Tweet", new {Id = @item.Id})'">
+                    <td>
+                            @Html.DisplayFor(modelItem => item.Username)
+                    </td>
+                    <td>
+                            @Html.DisplayFor(modelItem => item.Text)
+                    </td>
+                    <td>
+                            @Html.DisplayFor(modelItem => item.CreatedDateTime)
+                    </td>
+                    <td>
+                        <a asp-area="" asp-controller="Tweets" asp-action="Like" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Likes)</a>
+                    </td>
+                </tr>
+                </a>
+                }
+        </tbody>
+    </table>
 </div>
+
+
